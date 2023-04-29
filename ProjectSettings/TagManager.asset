@@ -9,6 +9,8 @@ TagManager:
   - MadCollect
   - WoodCollect
   - RockCollect
+  - Boat
+  - Bridge
   layers:
   - Default
   - TransparentFX

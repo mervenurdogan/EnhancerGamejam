@@ -13,6 +13,16 @@ public class CollectObjects : MonoBehaviour
     public GameObject RockObjects;
     public GameObject WoodBoat;
     public GameObject RockBridge;
+    public GameObject WoodUI;
+    public GameObject RockUI;
+    public GameObject Boatclosed;
+    public GameObject bridgeclosed;
+    private void Awake()
+    {
+        Counters.madalyon = 0;
+        Counters.wood = 0;
+        Counters.stone = 0;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("MadCollect"))
@@ -22,7 +32,7 @@ public class CollectObjects : MonoBehaviour
             //madalyon yok olacak
             //1.madalyonda wood, 2.de ahþap açýlacak, 3.de portal 
             Counters.madalyon++;
-            _madtext.text = Counters.madalyon.ToString() + " /5";
+            _madtext.text = Counters.madalyon.ToString() + " /3";
             Destroy(other.gameObject);
             switch (Counters.madalyon)
             {
@@ -35,7 +45,6 @@ public class CollectObjects : MonoBehaviour
                 case 1:
                     OpenWood();
                     break;
-
                 default:
                     break;
             }
@@ -45,23 +54,38 @@ public class CollectObjects : MonoBehaviour
         {
             Counters.wood++;
             Destroy(other.gameObject);
-            _woodtext.text = Counters.wood.ToString() + " /5";
+            _woodtext.text = Counters.wood.ToString() + "/3";
             Debug.Log("odun toplandý" + Counters.wood);
             if (Counters.wood == 3)
             {
                 WoodBoat.SetActive(true);
+                Boatclosed.SetActive(false);
+                
             }
 
         }
+
+        if (other.gameObject.CompareTag("Boat"))
+        {
+            WoodUI.SetActive(false);
+        }
+
         if (other.gameObject.CompareTag("RockCollect"))
         {
             Counters.stone++;
             Destroy(other.gameObject);
-            _rocktext.text = Counters.stone.ToString() + " /5";
-            if (Counters.stone == 3)
+            _rocktext.text = Counters.stone.ToString() + "/5";
+            if (Counters.stone == 5)
             {
                 RockBridge.SetActive(true);
+                bridgeclosed.SetActive(false);
+               
             }
+        }
+        if (other.gameObject.CompareTag("Bridge"))
+        {
+            RockUI.SetActive(false);
+
         }
 
 
@@ -70,6 +94,7 @@ public class CollectObjects : MonoBehaviour
     {
         Debug.Log("woodlar açýldý");
         WoodObjects.SetActive(true);
+        WoodUI.SetActive(true);
         //guide açýlacak,
         //woodlar açýlacak
 
@@ -78,6 +103,7 @@ public class CollectObjects : MonoBehaviour
     {
         Debug.Log("rocklar açýldý");
         RockObjects.SetActive(true);
+        RockUI.SetActive(true);
         //guide açýlacak
         //rocklar açýlacak
     }

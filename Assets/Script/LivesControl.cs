@@ -6,41 +6,41 @@ public class LivesControl : MonoBehaviour
 {
     public List<GameObject> LifeObjects = new List<GameObject>();
     public static bool IsGameover;
-    private bool Isdamaged =false;
 
     //yanarsa belli noktaya geri dönecek(ýþýnlanacak)
     //can azalacak
     //can biterse game over?-baþlangýç ekraný
-    private void Start()
+    private void Awake()
     {
-        
+        Counters.lives = 3;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") && (!Isdamaged)) 
+        if (other.gameObject.CompareTag("Enemy")) 
         {
-            if (Counters.lives > 0 && Counters.lives <= 3)
-            {
-                substractlife();
+            Debug.Log("UIlar gelecek");
+            //if (Counters.lives > 0 && Counters.lives <= 3)
+            //{
+            //    //substractlife();
 
-            }
+            //}
         }
         
     }
-    public bool substractlife()
-    {
-        Isdamaged= true;
-        //sound eklenebilir
-        //animasyon burada baþlayacak
-        Counters.lives--;
-        LifeObjects[Counters.lives].SetActive(false);
-        Invoke("DamageEnded", 3.0f);
-        return IsGameover = Counters.lives == 0;
+    //public bool substractlife()
+    //{
+    //    Isdamaged= true;
+    //    //sound eklenebilir
+    //    //animasyon burada baþlayacak
+    //    Counters.lives--;
+    //    LifeObjects[Counters.lives].SetActive(false);
+    //    Invoke("DamageEnded", 3.0f);
+    //    return IsGameover = Counters.lives == 0;
 
-    }
-    void DamageEnded()
-    {
-        //animasyon burada çalýþtýrýlacak
-        Isdamaged = false;
-    }
+    //}
+    //void DamageEnded()
+    //{
+    //    //animasyon burada çalýþtýrýlacak
+    //    Isdamaged = false;
+    //}
 }
