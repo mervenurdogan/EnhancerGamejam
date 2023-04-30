@@ -6,6 +6,8 @@ public class StartButton : MonoBehaviour
 {
     // Start is called before the first frame update
     private Scene _scene;
+    public GameObject _videocanva;
+    private IEnumerator coruotine;
     private void Awake()
     {
         _scene = SceneManager.GetActiveScene();
@@ -22,10 +24,20 @@ public class StartButton : MonoBehaviour
     }
     public void Startbuttonclick()
     {
-        SceneManager.LoadScene(_scene.buildIndex+1);
+        StartCoroutine(Waitvideo());
+        
     }
     public void Quitgame()
     {
         Application.Quit();
+    }
+    private IEnumerator Waitvideo()
+    {
+        _videocanva.SetActive(true);
+        
+        yield return new WaitForSeconds(30);
+        SceneManager.LoadScene(_scene.buildIndex + 1);
+
+
     }
 }
