@@ -11,6 +11,9 @@ TagManager:
   - RockCollect
   - Boat
   - Bridge
+  - Dayi
+  - Marangoz
+  - Yilan
   layers:
   - Default
   - TransparentFX

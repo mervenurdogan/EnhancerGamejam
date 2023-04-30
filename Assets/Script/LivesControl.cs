@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LivesControl : MonoBehaviour
 {
     public List<GameObject> LifeObjects = new List<GameObject>();
     public static bool IsGameover;
+    private Scene _scene;
+
 
     //yanarsa belli noktaya geri dönecek(ýþýnlanacak)
     //can azalacak
@@ -13,6 +16,7 @@ public class LivesControl : MonoBehaviour
     private void Awake()
     {
         Counters.lives = 3;
+        _scene = SceneManager.GetActiveScene();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,6 +30,10 @@ public class LivesControl : MonoBehaviour
             //}
         }
         
+    }
+    private void Gameisover()
+    {
+        SceneManager.LoadScene(_scene.buildIndex);
     }
     //public bool substractlife()
     //{
@@ -43,4 +51,5 @@ public class LivesControl : MonoBehaviour
     //    //animasyon burada çalýþtýrýlacak
     //    Isdamaged = false;
     //}
+
 }
