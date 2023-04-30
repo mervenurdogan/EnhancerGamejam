@@ -10,6 +10,8 @@ public class CollectObjects : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _rocktext;
     public GameObject WoodBoat;
     public GameObject Boatclosed;
+    public AudioSource Madsound;
+    public AudioSource Rocksound;
     private void Awake()
     {
         Counters.madalyon = 0;
@@ -24,6 +26,7 @@ public class CollectObjects : MonoBehaviour
             //madalyon sayýsý artacak
             //madalyon yok olacak
             Counters.madalyon++;
+            Madsound.Play();
             _madtext.text = Counters.madalyon.ToString() + " /3";
             Destroy(other.gameObject);
         }
@@ -31,6 +34,7 @@ public class CollectObjects : MonoBehaviour
         if (other.gameObject.CompareTag("WoodCollect"))
         {
             Counters.wood++;
+            Rocksound.Play();
             Destroy(other.gameObject);
             _woodtext.text = Counters.wood.ToString() + "/3";
             Debug.Log("odun toplandý" + Counters.wood);
@@ -44,6 +48,7 @@ public class CollectObjects : MonoBehaviour
         if (other.gameObject.CompareTag("RockCollect"))
         {
             Counters.stone++;
+            Rocksound.Play();
             Destroy(other.gameObject);
             _rocktext.text = Counters.stone.ToString() + "/5";
             

@@ -12,15 +12,14 @@ public class StartButton : MonoBehaviour
     {
         _scene = SceneManager.GetActiveScene();
     }
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     public void Startbuttonclick()
     {

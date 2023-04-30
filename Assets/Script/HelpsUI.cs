@@ -9,6 +9,7 @@ public class HelpsUI : MonoBehaviour
     public GameObject DayiUI;
     public GameObject MarangozUI;
     public GameObject YilanUI;
+    public GameObject YilanUIAA;
     public GameObject YilanUI2;
     public GameObject _Marangozz;
     public HelpManager _script;
@@ -31,6 +32,11 @@ public class HelpsUI : MonoBehaviour
         YilanUI.SetActive(false);
         Time.timeScale = 1;
     }
+    public void CloseYilanUIAA()
+    {
+        YilanUIAA.SetActive(false);
+        Time.timeScale = 1;
+    }
     public void CloseYilanUI2()
     {
         YilanUI2.SetActive(false);
@@ -40,7 +46,7 @@ public class HelpsUI : MonoBehaviour
     {
         _script.OpenRock();
         YilanUI.SetActive(false);
-        Time.timeScale = 1;
+        YilanUIAA.SetActive(true);
 
         //taþlar açýlacak 
     }
